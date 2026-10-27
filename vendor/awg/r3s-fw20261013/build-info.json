@@ -1,0 +1,27 @@
+{
+  "firmware": "FriendlyWrt-2026-10-13 / R3S-Series-FriendlyWrt-25.12.img.gz",
+  "firmware_sha256": "3cf37e2b91f80f51dd54d601efc3af8c9f2c69256488b874f9324aa54c34e74a",
+  "kernel": "6.1.141",
+  "kernel_source_commit": "30d3e1c2470a7282f37b96fdd4354314dda69aa3",
+  "awg_source_tag": "v3.1.20260906",
+  "awg_source_commit": "4569c4c67f3a57414969260cafbbd04694fbaae0",
+  "module_version": "3.1.20260906",
+  "vermagic": "6.1.141 SMP mod_unload modversions aarch64",
+  "dependencies": [
+    "libcurve25519_generic",
+    "udp_tunnel",
+    "ip6_udp_tunnel",
+    "libchacha20poly1305"
+  ],
+  "dependency_files": {
+    "libcurve25519_generic": "libcurve25519-generic.ko",
+    "udp_tunnel": "udp_tunnel.ko",
+    "ip6_udp_tunnel": "ip6_udp_tunnel.ko",
+    "libchacha20poly1305": "libchacha20poly1305.ko"
+  },
+  "matched_imported_symbol_crcs": 198,
+  "runtime_tested": false,
+  "build_compiler": "aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "firmware_compiler": "aarch64-linux-gnu-gcc (ctng-1.25.0-119g-FA) 11.3.0",
+  "limitation": "Config and symbol CRCs come from the exact firmware. Kernel sources use the vendor branch commit; its identity with the firmware build commit is not proven. Loading and VPN operation must be tested on the device."
+}

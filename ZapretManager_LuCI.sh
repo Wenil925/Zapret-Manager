@@ -1,6 +1,6 @@
 #!/bin/sh
 read -r _ _ ZM_NEW_VER <<'ZM_VERSION_EOF'
-# Version: 4.68
+# Version: 4.68.1
 ZM_VERSION_EOF
 set -e
 
@@ -129,7 +129,7 @@ fi
 
 CONF="/etc/config/zapret"
 ZM_VERSION="@ZM_VERSION@"
-ZM_SCRIPT_URL="https://raw.githubusercontent.com/StressOzz/Zapret-Manager/refs/heads/main/ZapretManager_LuCI.sh"
+ZM_SCRIPT_URL="https://gitea.bvrdo.online/wenil/Zapret-Manager/raw/branch/main/ZapretManager_LuCI.sh"
 GH_RAW="https://raw.githubusercontent.com"
 GH_MAIN="https://github.com"
 MT_URL_ITDOG="${GH_RAW}/StressOzz/Zapret-Manager/refs/heads/main/files/MagiTrickle/configAD.yaml"
@@ -4255,7 +4255,7 @@ _pg_trace() {
 			[ -z "$(_fk_sb_users)" ] && echo "pkg:sing-box-tiny pkg:sing-box pkg:sing-box-extended /usr/bin/sing-box /usr/bin/.sing-box.zm-keep /etc/init.d/sing-box /etc/rc.d/*sing-box /etc/sing-box /etc/config/sing-box /etc/config/sing-box-opkg /etc/config/sing-box.apk-new /var/run/sing-box /tmp/sing-box /usr/share/sing-box /usr/lib/libcronet.so /usr/libexec/sing-box-core /etc/sing-box-version.cache" ;;
 		mixomo) echo "$MIHOMO_BIN $MIHOMO_DIR /tmp/mihomo* /tmp/zashboard /tmp/zashboard.zip /tmp/metacubexd /tmp/metacubexd.tgz /etc/init.d/mihomo /etc/rc.d/*mihomo pkg:magitrickle /etc/magitrickle /etc/init.d/magitrickle /etc/rc.d/*magitrickle /etc/config/magitrickle /etc/config/magitrickle-opkg /usr/bin/magitrickle* /usr/sbin/magitrickle* /var/run/magitrickle* nft:magitrickle uci:network.Mihomo uci:firewall.Mihomo uci:firewall.lan_to_Mihomo cronrx:mihomo cronrx:magitrickle"
 			_bt_installed || echo "pkg:hev-socks5-tunnel /usr/bin/hev-socks5-tunnel /etc/config/hev-socks5-tunnel /etc/config/hev-socks5-tunnel-opkg /etc/init.d/hev-socks5-tunnel /etc/rc.d/*hev-socks5-tunnel /etc/hev-socks5-tunnel" ;;
-		awg) echo "pkg:luci-i18n-amneziawg-ru pkg:luci-app-amneziawg pkg:luci-proto-amneziawg pkg:amneziawg-tools pkg:kmod-amneziawg $AWG_DIR /usr/bin/awg /usr/bin/awg-quick /lib/netifd/proto/amneziawg.sh /lib/modules/*/amneziawg.ko /etc/modules.d/*amneziawg* $AWG_KMOD_MANUAL $(_zm_luci_files amneziawg) $AWF_MODE $AWF_SKIP $AWF_STATE $AWF_LOG cron:zm-awgfix" ;;
+		awg) echo "pkg:luci-i18n-amneziawg-ru pkg:luci-app-amneziawg pkg:luci-proto-amneziawg pkg:amneziawg-tools pkg:kmod-amneziawg $AWG_DIR /usr/bin/awg /usr/bin/awg-quick /lib/netifd/proto/amneziawg.sh /lib/modules/*/amneziawg.ko /etc/modules.d/*amneziawg* $AWG_KMOD_MANUAL $AWG_VENDOR_INIT /etc/rc.d/*zm-awg-r3s $(_zm_luci_files amneziawg) $AWF_MODE $AWF_SKIP $AWF_STATE $AWF_LOG cron:zm-awgfix" ;;
 		tgproxy) echo "pkg:tg-ws-proxy /usr/bin/tg-ws-proxy /etc/init.d/tg-ws-proxy /etc/tg-ws-proxy /etc/tg-ws-proxy.conf /etc/config/tg-ws-proxy $TG_BIN_GO $TG_BIN_GO.new $TG_INIT_GO $TG_BIN_RS $TG_INIT_RS $TG_SECRET_RS_FILE $TG_VER_GO_FILE $TG_VER_RS_FILE /etc/config/tg-ws-proxy-rs $TG_WATCH_FLAG /tmp/tg-ws-proxy.ipk /tmp/tg-ws-proxy.apk /etc/rc.d/*tg-ws-proxy* cron:zm-tg-auto cronrx:tg-ws-proxy" ;;
 		stgws) echo "pkg:tgws /etc/init.d/tgws /usr/sbin/tgws /usr/sbin/stgws /etc/config/tgws /etc/rc.d/*tgws* /var/lib/tgws /var/lib/stgws nft:tgws nft:stgws cronrx:tgws" ;;
 		tailscale) echo "cron:zm-tailscale $ZM_STATE_DIR/latest.tsc pkg:luci-i18n-tailscale-community-ru pkg:luci-app-tailscale-community /etc/init.d/tailscale-settings /etc/rc.d/*tailscale-settings /www/luci-static/resources/view/tailscale.js /usr/share/luci/menu.d/luci-app-tailscale-community.json /usr/share/rpcd/acl.d/luci-app-tailscale-community.json /usr/share/rpcd/ucode/tailscale.uc pkg:tailscale /usr/sbin/tailscale /usr/sbin/tailscaled /etc/init.d/tailscale /etc/rc.d/*tailscale /etc/config/tailscale /etc/config/tailscale-opkg /etc/config/tailscale.apk-new /etc/tailscale /var/lib/tailscale $TSC_NFT $TSC_HOOK $TSC_SYSCTL $TSC_DIR $TSC_UPLOG uci:network.$TSC_NET uci:firewall.$TSC_FW_RULE" ;;
@@ -13954,6 +13954,86 @@ _awg_fetch() {
 }
 
 AWG_KMOD_MANUAL="/etc/zm-awg/kmod-manual"
+AWG_VENDOR_INIT="/etc/init.d/zm-awg-r3s"
+AWG_VENDOR_SHA="1cb1ee6eeb9fd90223e03d2287962ae759e9d82a1195fe3bc1ce9a39712ceff6"
+AWG_VENDOR_URL="https://gitea.bvrdo.online/wenil/Zapret-Manager/raw/tag/awg-r3s-3.1.20260906-fw20261013/vendor/awg/r3s-fw20261013/amneziawg.ko"
+_awg_vendor_managed() { grep -q ' r3s-fw20261013$' "$AWG_KMOD_MANUAL" 2>/dev/null; }
+_awg_vendor_profile() {
+	[ "$PKG" = apk ] && [ "$(uname -r)" = 6.1.141 ] || return 1
+	case "$(_awg_board '@.board_name')" in friendlyelec,nanopi-r3s|friendlyarm,nanopi-r3s) ;; *) return 1 ;; esac
+	if [ "$(_awg_rel_ver)" = 25.12.5 ] && [ "$(_awg_rel_arch)" = aarch64_generic ] && [ "$(_awg_rel_target)" = rockchip/armv8 ] &&
+	   printf '%s\n' \
+		'32d9574af89064da96815ac6ae3285e51f75f2bebe93734868611acf43862f6f  /lib/modules/6.1.141/configs.ko' \
+		'8f5dab3d6c010f2626745ac31967cae0a22f7dd8cd9fc832a31e2d908b02aeb2  /lib/modules/6.1.141/udp_tunnel.ko' | sha256sum -c - >/dev/null 2>&1; then return 0; fi
+	echo "ОШИБКА: эта сборка FriendlyWrt R3S отличается от образа 13.10.2026 — нужен модуль под её ядро"
+	return 2
+}
+_awg_vendor_current() {
+	_awg_vendor_managed && [ -x "$AWG_VENDOR_INIT" ] && _pkg_is_installed kmod-amneziawg &&
+		printf '%s\n' "$AWG_VENDOR_SHA  /lib/modules/6.1.141/amneziawg.ko" | sha256sum -c - >/dev/null 2>&1
+}
+_awg_vendor_service_rm() {
+	[ ! -x "$AWG_VENDOR_INIT" ] || "$AWG_VENDOR_INIT" disable >/dev/null 2>&1
+	rm -f "$AWG_VENDOR_INIT" /etc/rc.d/*zm-awg-r3s
+}
+_awg_vendor_install() {
+	local d f dst enabled=0 rc=0
+	_awg_vendor_profile || return 1
+	mkdir -p "$ST_RUN" || return 1
+	d="$(mktemp -d "$ST_RUN/awg-r3s.XXXXXX")" || return 1
+	_rb_say "Скачиваем модуль AWG 3.1 для родного ядра FriendlyWrt 6.1.141"
+	if ! _rb_fetch_pkg "$AWG_VENDOR_URL" "$d/amneziawg.ko" ||
+	   ! printf '%s\n' "$AWG_VENDOR_SHA  $d/amneziawg.ko" | sha256sum -c -; then
+		echo "ОШИБКА: модуль из Gitea не скачан или его SHA256 не совпал — установка остановлена"
+		rm -rf "$d"; return 1
+	fi
+	for f in ko marker init; do
+		case "$f" in ko) dst=/lib/modules/6.1.141/amneziawg.ko ;; marker) dst="$AWG_KMOD_MANUAL" ;; init) dst="$AWG_VENDOR_INIT" ;; esac
+		if [ -e "$dst" ]; then cp -p "$dst" "$d/$f.old" || { rm -rf "$d"; return 1; }; fi
+	done
+	[ ! -x "$AWG_VENDOR_INIT" ] || { "$AWG_VENDOR_INIT" enabled >/dev/null 2>&1 && enabled=1; }
+	cat > "$d/init.new" <<'ZM_AWG_R3S_INIT'
+#!/bin/sh /etc/rc.common
+START=18
+STOP=89
+start() {
+	[ "$(uname -r)" = 6.1.141 ] || return 1
+	printf '%s\n' \
+		'32d9574af89064da96815ac6ae3285e51f75f2bebe93734868611acf43862f6f  /lib/modules/6.1.141/configs.ko' \
+		'8f5dab3d6c010f2626745ac31967cae0a22f7dd8cd9fc832a31e2d908b02aeb2  /lib/modules/6.1.141/udp_tunnel.ko' \
+		'1cb1ee6eeb9fd90223e03d2287962ae759e9d82a1195fe3bc1ce9a39712ceff6  /lib/modules/6.1.141/amneziawg.ko' | sha256sum -c - >/dev/null 2>&1 || return 1
+	[ ! -d /sys/module/amneziawg ] || return 0
+	local f n
+	for f in poly1305-neon libcurve25519-generic udp_tunnel ip6_udp_tunnel libchacha20poly1305; do
+		n="$(printf '%s' "$f" | tr '-' '_')"
+		[ -d "/sys/module/$n" ] || insmod "/lib/modules/6.1.141/$f.ko" || return 1
+	done
+	insmod /lib/modules/6.1.141/amneziawg.ko
+}
+stop() { return 0; }
+ZM_AWG_R3S_INIT
+	if ! { mkdir -p /lib/modules/6.1.141 "${AWG_KMOD_MANUAL%/*}" &&
+		cp "$d/amneziawg.ko" /lib/modules/6.1.141/amneziawg.ko.zm-new &&
+		mv -f /lib/modules/6.1.141/amneziawg.ko.zm-new /lib/modules/6.1.141/amneziawg.ko &&
+		printf '%s\n' '3.1.20260906 6.1.141 r3s-fw20261013' > "$AWG_KMOD_MANUAL" &&
+		cp "$d/init.new" "$AWG_VENDOR_INIT" && chmod 0755 "$AWG_VENDOR_INIT" &&
+		"$AWG_VENDOR_INIT" enable &&
+		{ _pkg_is_installed kmod-amneziawg || _zm_run 120 apk add --force-non-repository --virtual kmod-amneziawg; }; }; then rc=1; fi
+	if [ "$rc" != 0 ]; then
+		_awg_vendor_service_rm
+		for f in ko marker init; do
+			case "$f" in ko) dst=/lib/modules/6.1.141/amneziawg.ko ;; marker) dst="$AWG_KMOD_MANUAL" ;; init) dst="$AWG_VENDOR_INIT" ;; esac
+			if [ -e "$d/$f.old" ]; then cp -p "$d/$f.old" "$dst"; else rm -f "$dst"; fi
+		done
+		[ "$enabled" != 1 ] || "$AWG_VENDOR_INIT" enable >/dev/null 2>&1
+		rm -f /lib/modules/6.1.141/amneziawg.ko.zm-new
+		echo "ОШИБКА: установка модуля не завершена — прежние файлы восстановлены"
+	else
+		_rb_say "Модуль FriendlyWrt установлен; остальная установка AmneziaWG продолжается штатно"
+	fi
+	rm -rf "$d"
+	return "$rc"
+}
 _awg_kmod_pin_bad() {
 	local out
 	AWG_KPIN=""; AWG_KMV=""
@@ -13980,6 +14060,7 @@ _awg_kmod_ver() {
 }
 _awg_kmod_manual_rm() {
 	[ -f "$AWG_KMOD_MANUAL" ] || return 0
+	_awg_vendor_service_rm
 	rm -f "/lib/modules/$(uname -r)/amneziawg.ko" "$AWG_KMOD_MANUAL"
 }
 _awg_kmod_manual() {
@@ -14021,12 +14102,19 @@ _awg_kmod_manual() {
 
 _awg_kmod_load() {
 	local kv ko dir out dm need p free msg
+	if _awg_vendor_managed; then
+		"$AWG_VENDOR_INIT" start
+		_st_awg_loaded && return 0
+		echo "ОШИБКА: родное ядро не загрузило модуль AWG — проверьте dmesg; модули официальной OpenWrt не устанавливались"
+		return 1
+	fi
 	_st_awg_loaded && return 0
 	_rb_say "Загружаем модуль ядра"
 	modprobe amneziawg >/dev/null 2>&1
 	_st_awg_loaded && return 0
 	kv="$(uname -r)"
-	ko="$(find /lib/modules -name 'amneziawg.ko' 2>/dev/null | head -n1)"
+	ko="/lib/modules/$kv/amneziawg.ko"
+	[ -f "$ko" ] || ko="$(find /lib/modules -name 'amneziawg.ko' 2>/dev/null | head -n1)"
 	if [ -z "$ko" ]; then
 		echo "ОШИБКА: файла модуля amneziawg.ko нет — пакет kmod-amneziawg встал не полностью"
 		free="$(df -k /overlay 2>/dev/null | awk 'NR==2 {print $4}')"
@@ -14068,10 +14156,11 @@ _awg_kmod_load() {
 _st_install_awg() {
 	local mode="$1"
 	if [ "$mode" != update ] && _st_awg_loaded && command -v awg >/dev/null 2>&1 && _awg_proto_ok; then return 0; fi
-	local rel arch tgt sub post luci old_luci base bases m p f ok=0 was_loaded=0 kver0 kver1 need="" force="" why="" mrc
+	local rel arch tgt sub post luci old_luci base bases m p f ok=0 was_loaded=0 kver0 kver1 need="" force="" why="" mrc vendor=0
+	if _awg_vendor_profile; then vendor=1; else mrc=$?; [ "$mrc" != 2 ] || return 1; fi
 	_st_awg_loaded && was_loaded=1
 	kver0="$(_awg_kmod_ver)"
-	_awg_kmod_have || need=" kmod-amneziawg"
+	if [ "$vendor" = 1 ]; then _awg_vendor_current || need=" kmod-amneziawg"; else _awg_kmod_have || need=" kmod-amneziawg"; fi
 	[ "$mode" = update ] && need=" kmod-amneziawg"
 	if [ "$mode" = update ] || ! _pkg_is_installed amneziawg-tools || ! command -v awg >/dev/null 2>&1; then need="$need amneziawg-tools"; fi
 	if [ -n "$need" ]; then
@@ -14088,6 +14177,13 @@ _st_install_awg() {
 		_awg_legacy_feeds
 		_rb_say "Обновляем список пакетов"
 		$UPDATE || _rb_warn "Список пакетов обновился не полностью — продолжаем"
+		if [ "$vendor" = 1 ]; then
+			case " $need " in *' kmod-amneziawg '*)
+				_awg_vendor_install || return 1
+				[ "${ST_AWG_OWN:-1}" != 1 ] || _st_own 'pkg kmod-amneziawg'
+				need="$(printf '%s\n' "$need" | sed 's/ kmod-amneziawg//')"
+			;; esac
+		fi
 		bases=""
 		for m in $ST_AWG_MIRRORS; do bases="$bases $m/v$rel"; done
 		bases="$bases $ST_AWG_MIRROR_FLAT/$rel"
@@ -14111,7 +14207,7 @@ _st_install_awg() {
 							[ "$why" = kver ] || why=pin
 						fi
 					elif $INSTALL $force "$f"; then
-						[ "$p" = kmod-amneziawg ] && rm -f "$AWG_KMOD_MANUAL"
+						if [ "$p" = kmod-amneziawg ]; then _awg_vendor_service_rm; rm -f "$AWG_KMOD_MANUAL"; fi
 						[ "${ST_AWG_OWN:-1}" = 1 ] && _st_own "pkg $p"
 					elif [ "$p" != "$luci" ]; then
 						ok=0
@@ -55336,6 +55432,7 @@ for _zm_c in "zms Zapret-Manager.sh" "zmw ZapretManager_LuCI.sh"; do
 #!/bin/sh
 u="https://raw.githubusercontent.com/StressOzz/Zapret-Manager/main/${_zm_c#* }"
 ZM_GET_EOF
+	[ "${_zm_c%% *}" != zmw ] || printf '%s\n' 'u="https://gitea.bvrdo.online/wenil/Zapret-Manager/raw/branch/main/ZapretManager_LuCI.sh"' >> "/usr/bin/zmw"
 	cat >> "/usr/bin/${_zm_c%% *}" <<'ZM_GET_EOF'
 t="/tmp/zm-get.$$.sh"
 get() { rm -f "$t"; if command -v curl >/dev/null 2>&1; then curl -fsSL --connect-timeout 10 --max-time 120 -o "$t" "$1"; else wget -q -O "$t" "$1"; fi && [ -s "$t" ] && ! head -c 512 "$t" | grep -qiE '<(!doctype|html)'; }

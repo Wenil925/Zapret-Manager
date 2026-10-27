@@ -1,3 +1,5 @@
+> **Адаптация FriendlyWrt для NanoPi R3S / R3S LTS:** установка AWG 3.1 под родное ядро 6.1.141 через штатную вкладку LuCI/Web. [Поддерживаемый образ, установка и ограничения](docs/friendlywrt-awg.md). Автор исходного Zapret Manager — [StressOzz](https://github.com/StressOzz/Zapret-Manager). Модуль пока не испытан на настоящем устройстве.
+
 <div align="center">
 
 # Zapret Manager
