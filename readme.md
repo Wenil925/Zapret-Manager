@@ -1,4 +1,4 @@
-> **FriendlyWrt для NanoPi R3S / R3S LTS:** AWG 3.1 под родное ядро **6.1.141** через вкладку LuCI/Web. 27.10.2026 владелец R3S подтвердил успешную работу адаптации на образе **FriendlyWrt от 13.10.2026**. [Релиз v4.68.1-r3s.1](https://gitea.bvrdo.online/wenil/Zapret-Manager/releases/tag/v4.68.1-r3s.1).
+> **FriendlyWrt для NanoPi R3S / R3S LTS:** AWG 3.1 под родное ядро **6.1.141** через вкладку LuCI/Web. 27.10.2026 владелец R3S подтвердил успешную работу адаптации на образе **FriendlyWrt от 13.10.2026**. [Релиз v4.68.2-r3s.1](https://github.com/Wenil925/Zapret-Manager/releases/tag/v4.68.2-r3s.1).
 
 ### Установка адаптации для R3S
 
@@ -7,11 +7,11 @@
 Сохраните настройки панели её кнопкой резервного копирования. Выполните по SSH две команды по очереди:
 
 ```sh
-curl -fL -o /tmp/zmw.sh https://gitea.bvrdo.online/wenil/Zapret-Manager/raw/tag/v4.68.1-r3s.1/ZapretManager_LuCI.sh
+curl -fL -o /tmp/zmw.sh https://raw.githubusercontent.com/Wenil925/Zapret-Manager/v4.68.2-r3s.1/ZapretManager_LuCI.sh
 sh /tmp/zmw.sh
 ```
 
-Затем откройте **AmneziaWG → Установить / Переустановить**. Установщик сам получает подходящий модуль с Gitea и проверяет SHA256.
+Затем откройте **AmneziaWG → Установить / Переустановить**. Установщик сам получает подходящий модуль с GitHub и проверяет SHA256. Установщик, модуль и исходники для пересборки размещены на GitHub.
 
 [Подробная инструкция, проверка работы и решение ошибки удаления DoH / BigRedButton](docs/friendlywrt-awg.md).
 

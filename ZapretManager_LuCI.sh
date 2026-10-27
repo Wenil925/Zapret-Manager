@@ -1,6 +1,6 @@
 #!/bin/sh
 read -r _ _ ZM_NEW_VER <<'ZM_VERSION_EOF'
-# Version: 4.68.1
+# Version: 4.68.2
 ZM_VERSION_EOF
 set -e
 
@@ -129,7 +129,7 @@ fi
 
 CONF="/etc/config/zapret"
 ZM_VERSION="@ZM_VERSION@"
-ZM_SCRIPT_URL="https://gitea.bvrdo.online/wenil/Zapret-Manager/raw/branch/main/ZapretManager_LuCI.sh"
+ZM_SCRIPT_URL="https://raw.githubusercontent.com/Wenil925/Zapret-Manager/friendlywrt-r3s/ZapretManager_LuCI.sh"
 GH_RAW="https://raw.githubusercontent.com"
 GH_MAIN="https://github.com"
 MT_URL_ITDOG="${GH_RAW}/StressOzz/Zapret-Manager/refs/heads/main/files/MagiTrickle/configAD.yaml"
@@ -13956,7 +13956,7 @@ _awg_fetch() {
 AWG_KMOD_MANUAL="/etc/zm-awg/kmod-manual"
 AWG_VENDOR_INIT="/etc/init.d/zm-awg-r3s"
 AWG_VENDOR_SHA="1cb1ee6eeb9fd90223e03d2287962ae759e9d82a1195fe3bc1ce9a39712ceff6"
-AWG_VENDOR_URL="https://gitea.bvrdo.online/wenil/Zapret-Manager/raw/tag/awg-r3s-3.1.20260906-fw20261013/vendor/awg/r3s-fw20261013/amneziawg.ko"
+AWG_VENDOR_URL="https://raw.githubusercontent.com/Wenil925/Zapret-Manager/v4.68.2-r3s.1/vendor/awg/r3s-fw20261013/amneziawg.ko"
 _awg_vendor_managed() { grep -q ' r3s-fw20261013$' "$AWG_KMOD_MANUAL" 2>/dev/null; }
 _awg_vendor_profile() {
 	[ "$PKG" = apk ] && [ "$(uname -r)" = 6.1.141 ] || return 1
@@ -13984,7 +13984,7 @@ _awg_vendor_install() {
 	_rb_say "Скачиваем модуль AWG 3.1 для родного ядра FriendlyWrt 6.1.141"
 	if ! _rb_fetch_pkg "$AWG_VENDOR_URL" "$d/amneziawg.ko" ||
 	   ! printf '%s\n' "$AWG_VENDOR_SHA  $d/amneziawg.ko" | sha256sum -c -; then
-		echo "ОШИБКА: модуль из Gitea не скачан или его SHA256 не совпал — установка остановлена"
+		echo "ОШИБКА: модуль из GitHub не скачан или его SHA256 не совпал — установка остановлена"
 		rm -rf "$d"; return 1
 	fi
 	for f in ko marker init; do
@@ -55432,7 +55432,7 @@ for _zm_c in "zms Zapret-Manager.sh" "zmw ZapretManager_LuCI.sh"; do
 #!/bin/sh
 u="https://raw.githubusercontent.com/StressOzz/Zapret-Manager/main/${_zm_c#* }"
 ZM_GET_EOF
-	[ "${_zm_c%% *}" != zmw ] || printf '%s\n' 'u="https://gitea.bvrdo.online/wenil/Zapret-Manager/raw/branch/main/ZapretManager_LuCI.sh"' >> "/usr/bin/zmw"
+	[ "${_zm_c%% *}" != zmw ] || printf '%s\n' 'u="https://raw.githubusercontent.com/Wenil925/Zapret-Manager/friendlywrt-r3s/ZapretManager_LuCI.sh"' >> "/usr/bin/zmw"
 	cat >> "/usr/bin/${_zm_c%% *}" <<'ZM_GET_EOF'
 t="/tmp/zm-get.$$.sh"
 get() { rm -f "$t"; if command -v curl >/dev/null 2>&1; then curl -fsSL --connect-timeout 10 --max-time 120 -o "$t" "$1"; else wget -q -O "$t" "$1"; fi && [ -s "$t" ] && ! head -c 512 "$t" | grep -qiE '<(!doctype|html)'; }
