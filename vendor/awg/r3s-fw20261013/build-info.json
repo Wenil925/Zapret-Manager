@@ -20,8 +20,11 @@
     "libchacha20poly1305": "libchacha20poly1305.ko"
   },
   "matched_imported_symbol_crcs": 198,
-  "runtime_tested": false,
+  "runtime_tested": true,
+  "runtime_test_evidence": "device owner report",
+  "runtime_test_date": "2026-10-27",
+  "runtime_test_note": "The NanoPi R3S owner reports that the adapted installation and operation work as expected. Separate handshake logs, reboot checks, speed and temperature measurements were not collected.",
   "build_compiler": "aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
   "firmware_compiler": "aarch64-linux-gnu-gcc (ctng-1.25.0-119g-FA) 11.3.0",
-  "limitation": "Config and symbol CRCs come from the exact firmware. Kernel sources use the vendor branch commit; its identity with the firmware build commit is not proven. Loading and VPN operation must be tested on the device."
+  "limitation": "Config and symbol CRCs come from the exact firmware. Kernel sources use the vendor branch commit; its identity with the firmware build commit is not proven. The owner report applies to the specified firmware on one device, not to other firmware builds."
 }

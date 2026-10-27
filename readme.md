@@ -1,4 +1,23 @@
-> **Адаптация FriendlyWrt для NanoPi R3S / R3S LTS:** установка AWG 3.1 под родное ядро 6.1.141 через штатную вкладку LuCI/Web. [Поддерживаемый образ, установка и ограничения](docs/friendlywrt-awg.md). Автор исходного Zapret Manager — [StressOzz](https://github.com/StressOzz/Zapret-Manager). Модуль пока не испытан на настоящем устройстве.
+> **FriendlyWrt для NanoPi R3S / R3S LTS:** AWG 3.1 под родное ядро **6.1.141** через вкладку LuCI/Web. 27.10.2026 владелец R3S подтвердил успешную работу адаптации на образе **FriendlyWrt от 13.10.2026**. [Релиз v4.68.1-r3s.1](https://gitea.bvrdo.online/wenil/Zapret-Manager/releases/tag/v4.68.1-r3s.1).
+
+### Установка адаптации для R3S
+
+Поддерживаемый образ: `R3S-Series-FriendlyWrt-25.12.img.gz`, выпуск производителя `FriendlyWrt-2026-10-13`, пользовательская часть OpenWrt 25.12.5. Совместимость проверяется по модели, работающему ядру и отпечаткам штатных модулей.
+
+Сохраните настройки панели её кнопкой резервного копирования. Выполните по SSH две команды по очереди:
+
+```sh
+curl -fL -o /tmp/zmw.sh https://gitea.bvrdo.online/wenil/Zapret-Manager/raw/tag/v4.68.1-r3s.1/ZapretManager_LuCI.sh
+sh /tmp/zmw.sh
+```
+
+Затем откройте **AmneziaWG → Установить / Переустановить**. Установщик сам получает подходящий модуль с Gitea и проверяет SHA256.
+
+[Подробная инструкция, проверка работы и решение ошибки удаления DoH / BigRedButton](docs/friendlywrt-awg.md).
+
+Автор исходного Zapret Manager — [StressOzz](https://github.com/StressOzz/Zapret-Manager). Ниже сохранена документация исходного проекта. Для установки этого форка используйте команды выше: Windows-установщик и ссылки на установку из GitHub в исходной документации загружают версию автора.
+
+---
 
 <div align="center">
 
